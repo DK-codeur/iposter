@@ -43,6 +43,38 @@ class DataProvider with ChangeNotifier{
     }
   }
 
+  Future<String> addPost(String title, String body) async {
+    final url = '$API_ENDPOINT/posts';
+
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+         headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+        body: json.encode({
+          "title": title,
+          "body": body,
+          "userId": 1
+        })
+      );
+
+      print("================ ${response.body}");
+      print("================ ${response.statusCode}");
+
+      if (response.statusCode == 201) {
+        return "success";
+      } else {
+        return "error";
+      }
+      
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+
+
   Posts postById(int id) {
     return _posts.firstWhere((post) => post.id == id);
   }
