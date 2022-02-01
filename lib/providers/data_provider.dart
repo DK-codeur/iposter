@@ -8,7 +8,7 @@ import 'package:iposter/utils/constant.dart';
 class DataProvider with ChangeNotifier{
 
   List<Posts> _posts = [];
-  List<Posts> get resto {
+  List<Posts> get post {
     return [..._posts];
   }
 
@@ -26,7 +26,7 @@ class DataProvider with ChangeNotifier{
         return;
       }
 
-      print(extractedData);
+      print("============== Data fetched");
 
       final List<Posts> loadedPosts = [];
       for (var i = 0; i < extractedData.length; i++) {
@@ -37,11 +37,14 @@ class DataProvider with ChangeNotifier{
       _posts = loadedPosts;
       notifyListeners();
 
-      print(['all Instance of Resto']);
 
     } catch (error) {
       throw error;
     }
+  }
+
+  Posts postById(int id) {
+    return _posts.firstWhere((post) => post.id == id);
   }
 
   
