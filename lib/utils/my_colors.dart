@@ -4,5 +4,6 @@ class MyColors {
   static const primary = Colors.green;
   static const white = Colors.white;
   static const black = Colors.black;
+  static const danger = Colors.pink;
 
 }
