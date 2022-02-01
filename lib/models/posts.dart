@@ -1,5 +1,7 @@
 
-class Posts {
+import 'package:flutter/cupertino.dart';
+
+class Posts with ChangeNotifier {
     Posts({
         this.userId,
         this.id,

@@ -8,7 +8,7 @@ import 'package:iposter/utils/constant.dart';
 class DataProvider with ChangeNotifier{
 
   List<Posts> _posts = [];
-  List<Posts> get resto {
+  List<Posts> get post {
     return [..._posts];
   }
 
@@ -26,7 +26,7 @@ class DataProvider with ChangeNotifier{
         return;
       }
 
-      print(extractedData);
+      print("============== Data fetched");
 
       final List<Posts> loadedPosts = [];
       for (var i = 0; i < extractedData.length; i++) {
@@ -37,11 +37,46 @@ class DataProvider with ChangeNotifier{
       _posts = loadedPosts;
       notifyListeners();
 
-      print(['all Instance of Resto']);
 
     } catch (error) {
       throw error;
     }
+  }
+
+  Future<String> addPost(String title, String body) async {
+    final url = '$API_ENDPOINT/posts';
+
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+         headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+        body: json.encode({
+          "title": title,
+          "body": body,
+          "userId": 1
+        })
+      );
+
+      print("================ ${response.body}");
+      print("================ ${response.statusCode}");
+
+      if (response.statusCode == 201) {
+        return "success";
+      } else {
+        return "error";
+      }
+      
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+
+
+  Posts postById(int id) {
+    return _posts.firstWhere((post) => post.id == id);
   }
 
   
