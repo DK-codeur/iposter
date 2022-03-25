@@ -1,21 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 
 class Utils {
 
-  static void customToast(String? msg) {
-    Fluttertoast.showToast(
-      msg: '${msg.toString()}',
-      gravity: ToastGravity.BOTTOM,
-      textColor: Colors.white,
-      // fontSize: 13.0
-    );
-  }
-
-
+  
   static loadingDialog(BuildContext context, {String? msg}) {
       showDialog(
         context: context,
@@ -33,11 +22,7 @@ class Utils {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  SpinKitRing(
-                    color: Theme.of(context).primaryColor,
-                    lineWidth: 1.5,
-                    size: 40.0,
-                  ),
+                  CircularProgressIndicator(),
                   SizedBox(
                     height: 30.0,
                   ),

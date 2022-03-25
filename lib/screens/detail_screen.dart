@@ -1,34 +1,28 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:iposter/providers/data_provider.dart';
-import 'package:iposter/utils/my_colors.dart';
-import 'package:provider/provider.dart';
 
-class PostScreen extends StatefulWidget {
-  const PostScreen({Key? key}) : super(key: key);
+class DetailScreen extends StatefulWidget {
+  const DetailScreen({Key? key}) : super(key: key);
 
   @override
-  State<PostScreen> createState() => _PostScreenState();
+  State<DetailScreen> createState() => _DetailScreenState();
 }
 
-class _PostScreenState extends State<PostScreen> {
+class _DetailScreenState extends State<DetailScreen> {
 
   @override
   Widget build(BuildContext context) {
 
-    final postId = ModalRoute.of(context)!.settings.arguments as int;
-    final post = Provider.of<DataProvider>(context).postById(postId);
-
     return Scaffold(
       appBar: AppBar(
-        title: Text("Post - ${post.id.toString()}"),
+        title: Text("Post "),
 
         actions: [
           IconButton(
             onPressed: () {}, 
             icon: CircleAvatar(
-              backgroundColor: MyColors.white,
+              backgroundColor: Colors.white,
               child: Icon(Icons.edit,)
             )
           ),
@@ -36,8 +30,8 @@ class _PostScreenState extends State<PostScreen> {
           IconButton(
             onPressed: () {}, 
             icon: CircleAvatar(
-              backgroundColor: MyColors.white,
-              child: Icon(Icons.delete, color: MyColors.danger,)
+              backgroundColor: Colors.white,
+              child: Icon(Icons.delete, color: Colors.pink,)
             )
           )
         ],
@@ -47,7 +41,7 @@ class _PostScreenState extends State<PostScreen> {
         children: [
           ListTile(
             title: Text(
-              post.title.toString(),
+              "montitre",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 22
@@ -57,7 +51,7 @@ class _PostScreenState extends State<PostScreen> {
             subtitle: Padding(
               padding: EdgeInsets.only(top: 15),
               child: Text(
-                post.body.toString(),
+                "mon body",
                 style: TextStyle(
                   fontSize: 20
                 ),

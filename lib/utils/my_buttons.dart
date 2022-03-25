@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:iposter/utils/my_colors.dart';
 
 Container myButton(String title, {void Function()? onPressed }) {
   return Container(
@@ -12,20 +11,13 @@ Container myButton(String title, {void Function()? onPressed }) {
     child: TextButton(
       onPressed:onPressed,
       style: TextButton.styleFrom(
-        // primary: Colors.white,
-        backgroundColor: MyColors.primary,
-        shape: RoundedRectangleBorder(
-          side: BorderSide(color: MyColors.primary, width: 1.4),
-          borderRadius: BorderRadius.all(
-            Radius.circular(3)
-          )
-        ), 
+        primary: Colors.white,
+        backgroundColor: Colors.green,
       ),
       child: Text(
         title,
         style: TextStyle(
-          color: MyColors.white,
-          fontFamily: 'CenturyGothic',
+          color: Colors.white,
           fontWeight: FontWeight.bold
         ),
       ),

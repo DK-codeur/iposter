@@ -3,8 +3,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iposter/models/posts.dart';
-import 'package:iposter/screens/posts/post_screen.dart';
 import 'package:provider/provider.dart';
+
+import '../screens/detail_screen.dart';
 
 
 class ListItem extends StatelessWidget {
@@ -24,7 +25,7 @@ class ListItem extends StatelessWidget {
           Navigator.push( //go to detial page
             context, 
             CupertinoPageRoute(
-              builder: (context) => PostScreen(),
+              builder: (context) => DetailScreen(),
               settings: RouteSettings(
                 arguments: post.id
               )
