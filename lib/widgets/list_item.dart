@@ -22,9 +22,9 @@ class ListItem extends StatelessWidget {
       margin: EdgeInsets.all(10),
       child: InkWell(
         onTap: () {
-          Navigator.push( //go to detial page
+          Navigator.push(
             context, 
-            CupertinoPageRoute(
+            MaterialPageRoute(
               builder: (context) => DetailScreen(),
               settings: RouteSettings(
                 arguments: post.id

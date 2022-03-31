@@ -46,7 +46,7 @@ class DataProvider with ChangeNotifier{
   }
 
   Future<String> addPost(String title, String body) async {
-    final url = '$API_ENDPOINT/posts';
+    const url = '$API_ENDPOINT/posts';
 
     try {
       final response = await http.post(
@@ -60,9 +60,6 @@ class DataProvider with ChangeNotifier{
           "userId": 1
         })
       );
-
-      print("================ ${response.body}");
-      print("================ ${response.statusCode}");
 
       if (response.statusCode == 201) {
         return "success";

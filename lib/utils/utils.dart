@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 class Utils {
 
-  
   static loadingDialog(BuildContext context, {String? msg}) {
       showDialog(
         context: context,
@@ -37,7 +36,7 @@ class Utils {
 
     static void showSnackbar(BuildContext context, String msg, {Color backColor = Colors.black}) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("$msg"), backgroundColor: backColor,)
+        SnackBar(content: Text(msg), backgroundColor: backColor,)
       );
     }
 
