@@ -72,11 +72,63 @@ class DataProvider with ChangeNotifier{
     }
   }
 
-
-
   Posts postById(int id) {
     return _posts.firstWhere((post) => post.id == id);
   }
+
+  Future<String> deletePost(int? id) async {
+    final url = "$API_ENDPOINT/posts/$id";
+
+    try {
+      final response = await http.delete(
+        Uri.parse(url),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      );
+      print('Delete:' + '${response.statusCode}');
+
+      if (response.statusCode == 200) {
+        return "success";
+      } else {
+        return "error";
+      }
+
+    } catch (e) {
+      rethrow;
+    }
+
+  }
+
+  Future<String> updatePost(int? id) async {
+    final url = "$API_ENDPOINT/posts/$id";
+
+    try {
+      final response = await http.put(
+        Uri.parse(url),
+         headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+        body: json.encode({
+          "title": "new titre",
+        })
+      );
+
+      print('Update:' + '${response.body}');
+
+      if (response.statusCode == 200) {
+        return "success";
+      } else {
+        return "error";
+      }
+      
+    } catch (e) {
+      rethrow;
+    }
+
+  }
+
+
 
   
 

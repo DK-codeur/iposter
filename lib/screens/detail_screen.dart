@@ -3,7 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/data_provider.dart'; 
+import '../providers/data_provider.dart';
+import '../utils/utils.dart'; 
 
 class DetailScreen extends StatefulWidget {
   const DetailScreen({Key? key}) : super(key: key);
@@ -28,7 +29,22 @@ class _DetailScreenState extends State<DetailScreen> {
         title: Text("Post - ${post.id.toString()}"), //implementation de l'id
         actions: [
           IconButton(
-            onPressed: () {}, 
+            onPressed: () async {
+
+              Utils.loadingDialog(context);
+              await Provider.of<DataProvider>(context, listen: false).updatePost(post.id).then((value) => {
+                if (value == "success") {
+                  Navigator.pop(context),
+                  Navigator.pop(context),
+
+                  Utils.showSnackbar(context, "Modifié avec sucèss", backColor: Colors.green)
+                } else {
+                  Navigator.pop(context),
+                  Utils.showSnackbar(context, "Une erreur s'est produite")
+                }
+              });
+            
+            }, 
             icon: CircleAvatar(
               backgroundColor: Colors.white,
               child: Icon(Icons.edit,)
@@ -36,7 +52,20 @@ class _DetailScreenState extends State<DetailScreen> {
           ),
 
           IconButton(
-            onPressed: () {}, 
+            onPressed: () async {
+              Utils.loadingDialog(context);
+              await Provider.of<DataProvider>(context, listen: false).deletePost(post.id).then((value) => {
+                if (value == "success") {
+                  Navigator.pop(context),
+                  Navigator.pop(context),
+
+                  Utils.showSnackbar(context, "Supprimé avec sucèss", backColor: Colors.green)
+                } else {
+                  Navigator.pop(context),
+                  Utils.showSnackbar(context, "Une erreur s'est produite")
+                }
+              });
+            }, 
             icon: CircleAvatar(
               backgroundColor: Colors.white,
               child: Icon(Icons.delete, color: Colors.pink,)
